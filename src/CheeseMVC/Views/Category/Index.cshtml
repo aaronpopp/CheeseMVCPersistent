@@ -1,0 +1,9 @@
+﻿@model List<CheeseMVC.Models.CheeseCategory>
+
+@foreach (var category in Model)
+{
+    <tr>
+        <td>@category.Name</td>
+        <td>@category.categoryID</td>
+    </tr>
+}
