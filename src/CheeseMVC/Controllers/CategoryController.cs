@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CheeseMVC.Models;
 using System.Collections.Generic;
 using CheeseMVC.Data;
 using System.Linq;
 using CheeseMVC.ViewModels;
+using CheeseMVC.Models;
 
 namespace CheeseMVC.Controllers
 {
-    public class CategoryController
+    public class CategoryController : Controller
     {
         private readonly CheeseDbContext context;
 
