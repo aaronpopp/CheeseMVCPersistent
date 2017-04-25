@@ -19,10 +19,16 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Index()
         {
-            IList<CheeseMenu> menus = context.CheeseMenus.ToList();
+            List<Menu> menus = context.Menus.ToList();
             // took this out:  Include(c => c.Category)
 
             return View(menus);
+        }
+
+        public IActionResult Add()
+        {
+            AddMenuViewModel addMenuViewModel = new AddMenuViewModel(context.Menus.ToList());
+            return View(addMenuViewModel);
         }
     }
 }
