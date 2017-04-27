@@ -31,7 +31,7 @@ namespace CheeseMVC.Controllers
             return View(addMenuViewModel);
         }
 
-        
+
         [HttpPost]
         public IActionResult Add(AddMenuViewModel addMenuViewModel)
         {
@@ -49,5 +49,32 @@ namespace CheeseMVC.Controllers
             }
 
             return View(addMenuViewModel);
+        }
+
+        public IActionResult ViewMenu(int id)
+        {
+            List<CheeseMenu> items = context
+                    .CheeseMenus
+                    .Include(item => item.Cheese)
+                    .Where(cm => cm.MenuID == id)
+                    .ToList();
+
+            Menu menu = context.Menus.Single(m => m.ID == id);
+
+            ViewMenuViewModel viewModel = new ViewMenuViewModel
+            {
+                Menu = menu,
+                Items = items
+            };
+
+            return View(viewModel);
+        }
+
+        public IActionResult AddItem(int id)
+        {
+            Menu menu = context.Menus.Single(m => m.ID == id);
+            List<Cheese> cheeses = context.Cheeses.ToList();
+            return View(new AddMenuItemViewModel(menu, cheeses));
+        }
     }
 }
